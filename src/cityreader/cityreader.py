@@ -3,8 +3,8 @@
 class City():
     def __init__(self, name, lat, lon):
         self.name = name
-        self.lat = lat
-        self.lon = lon
+        self.lat = float(lat)
+        self.lon = float(lon)
 
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -73,9 +73,23 @@ for c in cities:
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
-
-  # TODO Ensure that the lat and lon valuse are all floats
+  # TODO Ensure that the lat and lon values are all floats
   # Go through each city and check to see if it falls within
   # the specified coordinates.
-
+  lats = [float(lat1), float(lat2)]
+  lons = [float(lon1), float(lon2)]
+  for city in cities:
+      if float(city.lat) > min(lats) and float(city.lat) < max(lats):
+          if float(city.lon) > min(lons) and float(city.lon) < max(lons):
+              within.append(city)
   return within
+
+def in_square():
+    point1 = input("Enter lat1, lon1: ").split(",")
+    point2 = input("Enter lat2, lon2: ").split(",")
+    return cityreader_stretch(lat1=point1[0], lon1=point1[1],
+                           lat2=point2[0], lon2=point2[1], cities=cities)
+
+# # Commented out so the test runs without input
+# print([(i.name, i.lat, i.lon) for i in cityreader_stretch(45, -100, 32, -120, cities)])
+# in_square()
