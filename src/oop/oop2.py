@@ -22,7 +22,7 @@ class Motorcycle(GroundVehicle):
     def __init__(num_wheels=2):
         super().__init__(num_wheels=2)
     def drive(self):
-        return "BRAAAP"
+        return "BRAAAP!!"
 
 vehicles = [
     GroundVehicle(),
